@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<body>
+
+
+
+<div data-ng-app="" data-ng-init="names=[1,'krishna',19,'kanth']">
+<p>total name is : {{names[1]}}</p> 
+<p> total name is <span data-ng-bind="names[1]"></span></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+**Our first angular app**
+
+Module
+
+  a module is the core property of angular. Using this module we define our app.
+
+  syntax:
+        angular.module(<name of our app in string>,<array of dependencies>);
+  examle:
+        angular.module('myApp',[]);
+2.dependency injuction
+  this is a unique feature introduced in angular where we can access a function or
+  an object from one js file to another js
+  _____________________________________________________________________________
+  MVC approach of angular app
+
+  1. Data binding:
+
+    there are lets say some input fields inside our html. then our controller in
+    angular should look upon them and record the values what user types.
+
+
+  M --> Model inside our html
+
+
+  V --> view as our html itself
+
+
+  C --> controller this looks for every change in our view
+
+  <!-------------------------------------------------->
+
+________________________________________________________________________________
+
+M  --> model
+
+v --> view
+
+vm --> view model
+__________________________________________________________________________________
+
+To define a module we write like this:
+
+    angular.module('myApp',[]);
+
+ to call a module, we write like this:
+
+     angular.module('myApp');
+
+____________________________________________________________________________________
+creating controllers:
+
+(function(angular){
+
+  function ProjectController ('$scope'){
+    console.log('$scope')
+  }
+
+//injecting contoller
+ProjectController.$inject = ['$scope'];
+
+//calling module
+angular.module('ProjectApp').controller('projectController',ProjectController);
+})(window.angular || (window.angular = {}));
+___________________________________________________________________________________________________________________
+
+
+we can create any number of modules but we have to injuct in app.js
+
+**we can nest controllers but we should not nest ng app
+
+**for one way data binding we use ng-bind
+
+**for two way data binding we use ng-model
+_____________________________________________________________________________________________________________________
+
+one way data binding:
+
+    Getting the data from the controller and putting the same onto the html is what we call one way
+    data binding
+      there are two ways of performing one way data binding:
+        1.ng-bind
+          sytax:
+            <span ng-bind="<pass the property of vm>"</span>
+
+            example:
+              <span ng-bind="user.firstName"></span>
+
+          2.Angular exressions.
+            we can alternativerly use angular expressions these are basically double curly
+            braces to bind the data
+
+            syntax:
+              <span>{{<pass the property of vm>}}</span>
+
+            example:
+              <span>{{user.firstName}}</span>
+
+             **the issue with the angular exressions is that unitll the data is loaded in the controller the html shows
+             empty curly braces
+             this is a bad user experience.
+
+             **prefereed way of performing one way data binding using ng-bind attribute
+
+             ________________________________________________________________________________________________________
+             **two way data binding:
+
+             the concept of sending the data form the hmtl to controller and back from the html is what we call
+             as two way data binding since there is only the form fields that we use for user to input some data we
+             can make use on angular ng-model to perform two way data binding.
+
+             syntax:
+                  <input type="text" ng-model="<pass the property of vm>"/>
+
+                  exmple:
+                  <input type="text" ng-model="user.firstName"/>
+
+                  **only ng-model attribute is used ot perform two way data binding.
+        __________________________________________________________________________________________________________
+
+**Routing in Angularjs**
+
+
+____________________________________________________________________________________________________________________
+services
+
+services are a special type of functions or objects that can be shared or stored a data across
+the applicaitons the same services can also be used to perform business logic that is only access by the controller
+
+
+**my controller is only connected to view model
+should not connect to the business logic. because controller job to only controlle the view model only
+
+**we should not be writing the business logic in the controller. since controller is directly connected to the view
+it should only intilize the view model it should not perform any business logic
+
+there are two main tyoes of services in angularJS
+
+  1.single service(in angular its called FACTORY)
+    this service is an object that should be throughout the applcation
+    or
+    this service is an object that can be reused through the applcation
+
+    syntax:
+      angular.module(<module name>).factory(<name of the factory>,<call back function for the service>);
+
+    exmple:
+    //iife construct
+    (function (angular) {
+      'use strict';
+    //callback for the factory service type
+      function UserFactroy() {
+      }
+      //Injecting the dependencies
+      UserFactroy.$inject = [];
+      angular.module('projectApp.services').factory('UserFactory',UserFactroy);
+    })(window.angular || (window.angular = {}));
+
+**angualr introduced 'angular.copy' to perform deeply linked copy of this is similar to object.create() in plan js.
+
+**to add another property to exisitng property we use  'angular.extend'
+
+2.service type
+
+  this is used to write our business logic.. this can be treated as a factory type if needed.
+
+    syntax:
+      angular.module(<module name>).services(<name of the factory>,<call back function for the service>);
+
+**service type is always treated like a class!!
+
+
+---what are the different types of services supports?
+
+factory type: to share the data between 2 controllers. other functions
+
+service type: is to write business logic.()
+______________________________________________________________________________________________________________________-
+**MVVM architechture**
+
+1. we treat our controller as a class which will only initialize the view model.
+2 all the business logic will sit inside the services.
+3. we then share the services across the application.
+     this way we are indirecly eliminating the use of $scope and $rootScope
+
+     to setup the mvvm approach in angular follow these steps:
+
+     1. in app.js
+      whenever we are writing the routes inside the controller make sure to add the alias ot
+      additional property called 'controller as'
+
+      $routeProvider
+            .when('/home',{
+              templateUrl:'../template/home.temp.html',
+              controller: 'HomeControler as HomeCtrl'
+            });
+
+             or
+        $routeProvider
+              .when('/home',{
+                templateUrl:'../template/home.temp.html',
+                controller: 'HomeControler';
+                controlllerAs: 'HomeCtrl'
+              });
+
+if there are no routes and we are writing controller in the html itself
+the we write like this
+
+<div ng-controler= "HomeController"></div>
+
+of
+
+<div ng-controler= "HomeController as HomeCtrl"></div>
+
+
+2.In html
+  now we have create an alias  (namespace) for our controller we need to make use of these
+  alias to bind our data.
+
+  example:
+                        change
+              <input type="text" id="fName" name="fName" ng-model="user.firstName"/>
+                        To
+              <input type="text" id="fName" name="fName" ng-model="HomeCtrl.user.firstName"/>
+
+3.In controller.js
+        we need to eliminate the $scope as much as possbile. so we wont be injuecting the $scope unless
+        and untill its needed
+
+****  Avoid scope scooping****
+
+Lets say we have this html:
+      <div ng-controller="HomeControler">  &lt;!&ndash;$scope&ndash;&gt;
+        <div ng-controller="ProjectController">
+        <input type="text" ng-model="ProjectCtrl.user.username"/>
+        <input type="password" ng-model="ProjectCtrl.user.password"/>
+        </div>
+      </div>
+
+
+      Lets assume for a second that both homecontroller now the question arises that from which controller this scenario
+      is called "scope scoop"
+      this confusion will make our application inconsistent and sometimes  crash.
+
+
+      to avoid this issue we use mvvm architechtural apporoach. we give aliases to our controllers and use those alias
+      to write code
+_______________________________________________________________________________________________________________________
+
+**Directives:**
+the entire angular framework sits pureluy on the concept of directives.
+we can safely say that from html prospective directives are custom attributes.
+
+From angulars prospective these are special types of attributes using which:
+1. we can render an entire html
+2.we can get the values from the controller as well as from the view model
+3. we can alter html as soon as it is loaded/render
+4. we can perform window(dom) related logics
+
+    there mainly three types of directives:
+    1.attribute level directive
+    2.element level directive
+    3.class level directive
+
+
+**ngModel --> ng-model
+
+ example:
+1. in directive.js file
+function KrishnaElement() {
+    var self = this;
+    self.element = {
+
+      //restrict -> what kind of directive it is:
+      /*E -> element
+        A-> Atribute
+        C -> class*/
+        restrict: 'E',
+      //prelink (optional)-> perform some logic before the element is rendered (or) the directive kicks in
+
+    prelink: function () {
+
+    },
+    //postlink -> perform the logic after the element is rendered.
+    postlink: function(){
+
+    },
+
+    //scope(optional) -> similar to $scope and $rootScope we can define ouir own scope for the directive
+      scope: {
+
+      },
+      //trasclude -> transculstion means that we are basically making sure that the controller communicates with
+      //our directives it is a boolean value
+      transclude: true/false,
+
+    //template-> this is used to render our html
+    template: '<div class="">
+
+              '</div>',
+      //templateURL --> TO AVOID THE UPPER HTML VALUE SCENARIO WE CAN SOURCE AN ENTIRE HTML FILE
+      templateUrl: '../templates/home.temp.html'
+
+    };
+
+    return self.element;
+  }
+---------------------------------------------------------------------------------------
+2.in html:
+<body>
+
+<krishna-element> </krishna-element>
+</body>
+

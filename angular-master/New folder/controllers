@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<body>
+
+<div ng-app="kk" ng-controller="kkCtrl">
+Enter emp name:<input type="text" ng-model="empName"><br/>
+enter company name: <input type="text" ng-model="companyName"><br/>
+<br>
+
+{{"emp name is "+ empName + companyName}}
+</div>
+
+<script>
+var app= angular.module('kk',[]);
+app.controller('kkCtrl',function($scope){
+$scope.empName = "krishna";
+$scope.companyName = "hacker";
+});
+
+</script>
+</body>
+</html>

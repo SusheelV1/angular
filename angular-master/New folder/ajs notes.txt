@@ -1,0 +1,150 @@
+Features.
+   Angularjs is powerful javascript based development framework to cre4ate Rich Internet Applicaiton(RIA)
+
+   Angularjs Provides developers options to write client side application(using javascript) in a clean side application in a clean MVC(model view controller)
+	Application written in angularjs is cross-browser compliant. Angularjs autometically handles js code suitable for each browser.
+ Ajs is open source, completely free, and used by thousands of developers around the world. It is licensed under the apache license  version 2.0
+
+ ajs is perfect for single page applications(SPA)
+
+basics of angularjs: directives, expressions, filters, modules, and controllers,
+
+ajs extends html with ng-directives.
+
+the ng-app directive degines an ajs application.
+
+the ng-model directive dinds the value of html controls(input, select, textarea)to application data.
+
+the ng-bind directive binds application data to the html view.
+
+the ng-init directive intializes ajs application variables.
+
+the ng-repeat directive repeats html elemts for each item in a collection.
+
+ajs directives are html attributes with an ng prefix. 
+---------------------------------------------------------
+you can use data-ng- ,  insted of ng- , if you want to make your html page valid.
+------------------------------------------------------------
+==expressions==
+
+2+5
+
+{{2+5}}  --double braces--
+
+written inside a directive: ng-bind="expression"
+
+using expression::
+
+<div data-ng-app="" data-ng-init="mago=20;cost=50">
+<p>total {{mago * cost}}</p>
+
+
+using bind 
+
+<div data-ng-app="" data-ng-init="mago=20;cost=50">
+<p>total <span ng-bind="mago * cost"></span></p>
+
+------------------------------------------------------------------------
+strings==
+<div data-ng-app="" data-ng-init="fname='krishna';lname='kanth'">
+<p>total <span data-ng-bind="fname+lname"></span></p> 
+
+<div data-ng-app="" data-ng-init="pet={fname:'krishna',lname:'kanth'}">
+<p>total name is : {{pet.fname}}</p> 
+
+---adding variables is called concordinate--
+
+ags objects::
+
+<div data-ng-app="" data-ng-init="pet={fname:'krishna',lname:'kanth'}">
+<p>total name is : {{pet.fname}}</p> 
+
+--------pet = object
+      fname = object property 
+--------------------------------------------------------------------------
+
+Ajs Arrays
+
+<div data-ng-app="" data-ng-init="names=[1,'krishna',19,'kanth']">
+<p>total name is : {{names[1]}}</p>
+<p> total name is <span data-ng-bind="names[1]"></span></p>
+---------------------------------------------------
+ajs expressions vs js expressions
+
+like javascriot expressions ajs expressions can contain literals, operators and variables.
+
+unlike javascriot expressions, ajs expressions can be written inside html.
+
+ajs expressions do not support conditions, loops and exceptions while javascript do.
+
+ajs expressions support filters while javascriot expressions do not.
+--------------------------------------------------------------
+Mvc based frame work:
+
+A model view controller pattern is made up of the following three parts:-
+
+Model: it is the lowest level of the pattern resposible for maintaing data.
+	the model is resposible for managing application, it responds to the request from view and to the instructions from controller to update itself.
+
+	the model is the part of the application that handles the logic for the application data. often model objects reterieve data from a database.
+view:  it is responsible for displaying all or a portion of the data to the user.
+	A presentation of data in a particular format, triggered by the controller decision to present tht data. They are script based template systems such as jsp asp php and very
+       easy to integrate with ajax technology,
+      the view is the parts of the application that handles the display of the data. most often the views are created from teh model data.
+Controller - it is a software code that controls the interactions between the model and view.
+	      the controller responds to user input and perfroms interaction on the data model objects. the controller receives inpout validates
+             it and then performs busiess operations that modify the state of the data model.
+             The controller is the part of the application that hadles user interaction typically controller read data from a view, control user input and send input data to the model.
+-----------------------------------------------------------------------------------------
+       browser---(http request)-->controller----(excusion)-->model---(resulting)-->controller----(resulting data arrays)--> view----(gui content)-->controller---(http response)---browser
+------------------------------------------------------------------------------------------
+ng repeat directive in ajs
+
+
+two dimentional array.
+<div ng-app=""  n-init="myfriends=[{name:'krishna',country:'usa'},{name:'krishna',country:'usa'},]
+
+<p>looping with objects:</p>
+<ul>
+<li ng-repeat="x in myfriends">
+{{ x.name+x.country}}
+----------------------------------------------------------------------------------------
+create new directives in ajs
+
+we can create using .directive function 
+
+new directives are created by using the directive function 
+when naming a directive you must use a camel case name, but when invoking it, you must use sepatated name,
+
+<kri-Shna></kri-Shna>
+you can invoke a directive ny using:
+
+	Element name <kri-Shna></kri-Shna>
+	attribute <div kri-Shna></div>
+	class <div class="kri-Shna"></div> 
+
+Restrictions:
+	you can restrict your directives to onlu be invoked by some of the methods.
+the legal restrict values are:
+E for element name
+A for attribute
+C for class
+m for comment
+
+by default the value is EA meaning that both element names and attribute names can invoke the directive.
+-----------------------------------------------------------------------
+controllers:
+
+ajs contllers control the data of ajs applications.
+ajs are regular js objects.
+
+Ajs application mainly relies on controllers to control the flow of data in the application.
+
+a controller is defined using ng-controller directive.
+
+a controller is a javascript obect containing attriutes and functions.
+each controller accepts $scope as a parameter which refers to the application that controller is to control.
+
+
+
+

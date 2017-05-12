@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+ <script>
+ 
+  var app = angular.module('myApp', []);
+ 
+  app.controller('myCtrl', function($scope, $interval){
+   $scope.count = 4;
+   $scope.name = "Angualrjs"; // model name
+   $scope.villa = "Sairam11";
+   $interval(function () {
+                   $scope.count = $scope.count + 1;
+            }, 1000);
+  
+  });
+  
+
+  
+ </script>
+</head>
+<body>
+ <div ng-controller="myCtrl">
+  {{name}} - {{villa}}
+  {{count}}
+  <p ng-bind="name"> </p>
+  <p ng-bind="villa"> </p>
+ </div>
+
+</body>
+</html>

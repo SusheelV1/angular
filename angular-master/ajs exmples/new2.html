@@ -1,0 +1,79 @@
+ 
+<!DOCTYPE html>
+<html lang="en" ng-app = "myApp">
+	<head>
+		<meta charset="UTF-8">
+				<title>Title</title>
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		
+
+		<script>
+			var app = angular.module("myApp",[])
+			app.controller("myCtrl",function($scope){
+			//Edit method
+			$scope.Edit = function(abc){
+					$scope.obj = angular.copy(abc);
+				//alert(JSON.stringify(abc));
+			};
+			$scope.data = [
+		   {
+
+			"name": "Arun",
+			"Phone": 99394223423,
+			"address":"Bangalore",
+			"Rol_Id": 2
+		   },
+		   {
+
+			"name": "Abhiram",
+			"Phone": 98989874743,
+			"address":"Hyderabad",
+			"Rol_Id": 3
+		   },
+		   {
+
+			"name": "Gopi",
+			"Phone": 8984323423,
+			"address":"Singapor",
+			"Rol_Id": 4
+		   }
+
+		  ];
+
+			});
+		</script>
+	</head>
+	<body>
+	
+		<div ng-controller = "myCtrl" class="container">
+			<input class="form-group" type = "text" placeholder="name" ng-model = "obj.name" />
+			<input  class="form-group"type = "number" placeholder="Phone" ng-model = "obj.Phone" />
+			<input  class="form-group"type = "text" placeholder="Address"  ng-model = "obj.address" />
+			<input  class="form-group" type = "number" placeholder="Rol_Id" ng-model = "obj.Rol_Id" />
+			<button type="button" class="btn btn-success">Save</button>
+			<table border = "1">
+				<tr>
+					<th>Name</th>
+					<th>Phone</th>
+					<th>Address</th>
+					<th>Rol_Id</th>
+					<th>Action</th>
+				</tr>
+				<tr ng-repeat = "d in data">
+					<td>{{d.name}}</td>
+					<td>{{d.Phone}}</td>
+					<td>{{d.address}}</td>
+					<td>{{d.Rol_Id}}</td>
+					<td><button type="button" class="btn btn-success" ng-click="Edit(d)">Edit</button></td>
+					
+				</tr>
+			</table>
+		</div>
+
+	</body>
+</html>

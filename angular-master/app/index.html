@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+  <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+  </head>
+  <body ng-app="projectApp">  <!--$rootScope-->
+         <!--[if lte IE 8]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+         <![endif]-->
+<!--
+
+        &lt;!&ndash; Add your site or application content here &ndash;&gt;
+        <div ng-controller="ProjectController"> &lt;!&ndash;$scope&ndash;&gt;
+           <span data-ng-bind="user.firstName"> </span>
+          &lt;!&ndash;angulr expressions&ndash;&gt; &lt;!&ndash;it is used to bind the data coming from the controller&ndash;&gt;
+          &lt;!&ndash;another way of data binding&ndash;&gt;
+          <span> {{user.lastName}}</span>
+          <span> is {{10+12}}years old</span>
+        </div>
+
+        &lt;!&ndash;example of controller&ndash;&gt;
+         <div ng-controller="KrishnaController"> &lt;!&ndash;$scope&ndash;&gt;
+             <span data-ng-bind="user.lastName"></span>
+           <input type="text" id="lastName" ng-model="user.lastName">
+           <br>
+           <input type="text"  ng-model="user.firstName">
+           <span data-ng-bind="user.firstName"></span>
+&lt;!&ndash;changing&ndash;&gt;<br/>
+           <input type="text"  ng-model="user.suck" ng-change="checkFirst()">
+           <input type="text" ng-model="user.fuck">
+
+         </div>
+-->
+  <krishna-element krishna="hacker"></krishna-element>
+ <div ng-view=""></div>
+
+  <!--<article class="container">
+    <header></header>
+    <section class="row">
+      <aside class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <ul>
+          <li>
+            <a href="#!/home">Home</a>
+          </li>
+          <li>
+            <a href="#!/about">About</a>
+          </li>
+        </ul>
+      </aside>
+      <aside class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <div ng-view=""></div>
+      </aside>
+    </section>
+    <footer>
+
+    </footer>
+
+  </article>
+-->
+
+         <!--end site or application content here-->
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+
+      <!--2.services-->
+      <script src="scripts/Controllers/services/UserFactory.js"></script>
+      <script src="scripts/Controllers/services/LoginService.js"></script>
+
+      <!--3.directives-->
+      <script src="scripts/Controllers/Directives/KrishnaElement.js"></script>
+
+      <!--4.filters-->
+
+
+      <!--5controllers-->
+        <script src="scripts/Controllers/ProjectController.js"></script>
+        <script src="scripts/Controllers/HomeControler.js"></script>
+  <script src="scripts/Controllers/extraController.js"></script>
+                <!-- endbuild -->
+</body>
+</html>

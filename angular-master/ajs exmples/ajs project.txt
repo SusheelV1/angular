@@ -1,0 +1,14 @@
+Angular_sampler_projects
+
+libs
+images
+js
+	controller
+	directives
+	services
+	
+css
+views
+fonts
+partial pages 
+index.html

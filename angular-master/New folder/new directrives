@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<body>
+<div ng-app="kk">
+<kri-Shna></kri-Shna>
+<div kri-Shna></div>
+<p>pls fallow below link www.cyberdude.com</p>
+<script>
+var ram = angular.module("kk",[]);
+ram.directive("kriShna", function(){
+return{
+restrict : "E",
+template: "<p> welcome to training </p>"
+
+};
+});
+
+</script>
+
+</div>
+</body>
+</html>

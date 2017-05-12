@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<body>
+
+<div data-ng-app="" data-ng-init="mywebsite='www.krishnakanth.com'">
+
+
+<p>input something in the input box: </p>
+<p>Name: <input type="text" placeholder="enter your name" data-ng-model="name"></p>
+<h1>Hello {{name}}</h1>
+<h2> site <span data-ng-bind="mywebsite"></span></h2>
+<p>my salarys {{1500+506+5260+5062}}</p>
+
+</div>
+
+<div data-ng-app="" data-ng-init="mago=20;cost=50">
+<p>total {{mago * cost}}</p>
+
+</body>
+</html>
